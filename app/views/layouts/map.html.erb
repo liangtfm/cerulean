@@ -1,7 +1,59 @@
-<div>
-    <h1>Map!</h1>
+<div class="content">
+    <a href="/" class="btn waves-effect waves-light map-btn">Home</a>
+    <div class="container">
+        <div class="row">
+            <h1>Map of email sign ups</h1>
+            <div id="map"></div>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA83UNhcRbaFqy2K4nrfKVs41LRDgM4Yro&callback=initMap"
+             async defer></script>
+        </div>
+        <div class="row">
+            <table class="striped responsive-table">
+                <thead>
+                    <tr>
+                      <th data-field="id">Email</th>
+                      <th data-field="name">IP Address</th>
+                      <th data-field="price">Location</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% @users.each do |user| %>
+                    <tr>
+                        <td><%= user.email %></td>
+                        <td><%= user.ip_address %></td>
+                        <td><%= user.address %></td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">
+    function initMap() {
+        var mapDiv = document.getElementById('map');
+        var map = new google.maps.Map(mapDiv, {
+            center: {lat: 44.540, lng: -78.546},
+            zoom: 2
+        });
 
+        $.ajax({
+            method: 'GET',
+            url: '/users',
+            success: function(data) {
+                console.log('get users success: ', data);
+
+                data.forEach(function(person) {
+                    var marker = new google.maps.Marker({
+                        animation: google.maps.Animation.DROP,
+                        position: {lat: person.latitude, lng: person.longitude},
+                        map: map,
+                        title: person.email
+                    });
+                });
+            }
+        });
+    };
 </script>
