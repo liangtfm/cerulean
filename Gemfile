@@ -33,6 +33,9 @@ gem 'geocoder'
 # want to try this for front-end!
 gem 'materialize-sass'
 
+gem 'devise'
+gem 'react-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
