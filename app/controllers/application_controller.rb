@@ -6,4 +6,8 @@ class ApplicationController < ActionController::Base
   def index
       render 'layouts/index'
   end
+
+  def map
+      render 'layouts/map'
+  end
 end
