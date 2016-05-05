@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
   end
 
   def map
-      render 'layouts/map'
+      if current_user
+          @users = User.all
+          render 'layouts/map'
+      else
+          redirect_to new_user_session_url
+      end      
   end
 end

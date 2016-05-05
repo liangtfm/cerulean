@@ -14,3 +14,85 @@
  *= require_self
  */
 @import "materialize";
+
+.content {
+    align-items: center;
+    background-color: #000000;
+    color: #FFFFFF;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    width: 100vw;
+}
+
+.bgvid {
+    background-size: cover;
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+.overlay {
+    background-color: rgba(0,0,0,0.4);
+    height: 100vh;
+    position: absolute;
+    width: 100vw;
+    z-index: 1;
+}
+
+.map-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.sign-up-container {
+    color: #FFFFFF;
+    z-index: 2;
+
+    .sign-up-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .email-input {
+            margin-left: 0;
+
+            #email {
+                border-bottom: 1px solid white;
+            }
+
+            label {
+                color: #FFFFFF;
+            }
+        }
+
+        .msg-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .card-panel {
+            margin-left: 0;
+
+            &.success-msg {
+                background-color: #388E3C;
+            }
+
+            &.error-msg {
+                background-color: #EF5350;
+            }
+        }
+    }
+}
