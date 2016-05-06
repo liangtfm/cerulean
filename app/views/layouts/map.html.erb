@@ -16,7 +16,6 @@
                       <th data-field="price">Location</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <% @users.each do |user| %>
                     <tr>
@@ -35,25 +34,30 @@
     function initMap() {
         var mapDiv = document.getElementById('map');
         var map = new google.maps.Map(mapDiv, {
-            center: {lat: 44.540, lng: -78.546},
+            center: {lat: 42.378385, lng: -71.1479291},
             zoom: 2
         });
+        var markers = [];
 
         $.ajax({
             method: 'GET',
             url: '/users',
-            success: function(data) {
-                console.log('get users success: ', data);
+            success: function(users) {
+                console.log('get users success: ', users);
 
-                data.forEach(function(person) {
+                users.forEach(function(user) {
                     var marker = new google.maps.Marker({
                         animation: google.maps.Animation.DROP,
-                        position: {lat: person.latitude, lng: person.longitude},
+                        position: {lat: user.latitude, lng: user.longitude},
                         map: map,
-                        title: person.email
+                        title: user.email
                     });
+
+                    markers.push(marker);
                 });
+
+                var mc = new MarkerClusterer(map, markers);
             }
-        });
+        });        
     };
 </script>
