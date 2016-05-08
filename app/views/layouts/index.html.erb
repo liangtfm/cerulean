@@ -43,6 +43,7 @@
         e.preventDefault();
 
         $('.card-panel').addClass('hide');
+        $('.submit-btn').addClass('disabled');
 
         var email = $('#email').val();
         var data = {email: email};
@@ -58,10 +59,10 @@
                     $('.card-panel').addClass('error-msg');
                     $('.card-panel').removeClass('hide');
                     $('.card-panel').removeClass('success-msg');
+                    $('.submit-btn').removeClass('disabled');
                     $('.card-panel span').html(data.error);
                 } else {
                     $('#email').val("");
-                    $('.submit-btn').addClass('disabled');
                     $('.card-panel').addClass('success-msg');
                     $('.card-panel').removeClass('hide');
                     $('.card-panel').removeClass('error-msg');
